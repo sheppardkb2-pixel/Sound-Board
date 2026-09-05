@@ -10,15 +10,16 @@ const soundFiles = {
 const audioTracks = [];
 
 sounds.forEach((sound) => {
-    const btn = document.createElement("button");
+    const button = document.createElement("button");
     const audio = new Audio(`Sounds/${soundFiles[sound]}`);
     audioTracks.push(audio);
 
-    btn.classList.add("btn");
+    button.classList.add("btn");
 
-    btn.innerText = sound;
+    button.innerText = sound;
 
-    btn.addEventListener("click", () => {
+    // Add Event Listener for button click 
+    button.addEventListener("click", () => {
         audioTracks.forEach((track) => {
             track.pause();
             track.currentTime = 0;
@@ -26,6 +27,6 @@ sounds.forEach((sound) => {
         audio.play();
     });
 
-    document.getElementById("buttons-container").appendChild(btn);
+    document.getElementById("buttons-container").appendChild(button);
 });
 
