@@ -1,20 +1,31 @@
-// Create an array of sounds
 const sounds = ["Applause", "Boo", "Gasp", "Tada", "Victory", "Wrong"];
+const soundFiles = {
+    Applause: "applause.mp3",
+    Boo: "boo (1).mp3",
+    Gasp: "gasp (1).mp3",
+    Tada: "tada (1).mp3",
+    Victory: "victory (1).mp3",
+    Wrong: "wrong (1).mp3",
+};
+const audioTracks = [];
 
-// For each sound, create a button, add a class 'btn'. update the text, append to DOM
 sounds.forEach((sound) => {
-    // Create a button 
-    const btn = document.createElement('button');
+    const btn = document.createElement("button");
+    const audio = new Audio(`Sounds/${soundFiles[sound]}`);
+    audioTracks.push(audio);
 
-    // Add a class of "btn" to the button element
-    btn.classList.add('btn');
+    btn.classList.add("btn");
 
-   // Set the button label text to be the same as the string value in the sounds array 
     btn.innerText = sound;
 
-    // Add the button to the DOM
-    document.getElementById('buttons-container').appendChild(btn);
+    btn.addEventListener("click", () => {
+        audioTracks.forEach((track) => {
+            track.pause();
+            track.currentTime = 0;
+        });
+        audio.play();
+    });
 
-    //Add an event listener to play the corresponding sound when the button is clicked
-    btn.addEventListener("click", () => playSound(sound));
+    document.getElementById("buttons-container").appendChild(btn);
 });
+
